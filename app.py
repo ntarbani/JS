@@ -11,9 +11,14 @@ def home():
 @app.route('/timezones')
 def index():
     return render_template('index.html')
+
 @app.route('/todolist')
 def todolist():
     return render_template('todolist.html')
+
+@app.route('/clock')
+def clock():
+    return render_template('clock.html')
 
 
 if __name__=="__main__":
