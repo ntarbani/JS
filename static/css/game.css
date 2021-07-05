@@ -43,9 +43,16 @@ body{
 
 #scoreCont{
     position: absolute;
-    font-size: 53px;
+    font-size: 30px;
     
     text-align: center;
+    color:white;
+}
+
+#scoreMax{
+    position: absolute;
+    font-size: 30px;
+    right:0px;
     color:white;
 }
 

@@ -9,6 +9,9 @@ audio.addEventListener('ended', function() {
     this.currentTime = 0;
     this.play();
 }, false);
+
+
+
 document.onkeydown=function(e)
 {
     
@@ -35,7 +38,20 @@ document.onkeydown=function(e)
 
     }
 }
-
+if(localStorage.getItem("maxScore")==null)
+{
+    maxScore=0;
+    localStorage.setItem('maxScore',JSON.stringify(maxScore));
+    
+}
+else
+{
+    maxScoreStr=localStorage.getItem("maxScore");
+    maxScore=parseInt(maxScoreStr);
+    scoreMax=document.getElementById('scoreMax');
+    scoreMax.innerHTML="Your Max-Score: "+maxScore;
+    console.log(maxScore);
+}
 setInterval(() => {
     dragon=document.querySelector(".dragon");
     enemy=document.querySelector(".enemy");
@@ -51,7 +67,7 @@ setInterval(() => {
     
     if((offsetX>40 && offsetX<200) && offsetY<35)
     {
-        console.log(dx1,ex);
+        //console.log(dx1,ex);
 
         gameOver.style.visibility='visible';
         enemy.style.top=ey+"px";
@@ -60,7 +76,7 @@ setInterval(() => {
         dragon.style.left=dx+"px";
         enemy.classList.remove('animateEnemy');
         aniDur=parseFloat(window.getComputedStyle(enemy,null).getPropertyValue('animation-duration'));
-        console.log(aniDur);
+        //console.log(aniDur);
         audio.pause();
         audio.currentTime=0;
         audiogo.play();
@@ -72,7 +88,15 @@ setInterval(() => {
             dragon.style.bottom="218px";
             dragon.style.left="50px";
         },1200); 
-
+        maxScoreStr=localStorage.getItem("maxScore");
+        maxScore=parseInt(maxScoreStr);
+        console.log(maxScore);
+        if(maxScore<score)
+        {
+            maxScore=score;
+            localStorage.setItem('maxScore',JSON.stringify(maxScore));
+            scoreMax.innerHTML="Your Max-Score: "+maxScore;
+        }
     }
     else{
         if((offsetX>40 && offsetX<200) && cross==true)
@@ -88,7 +112,7 @@ setInterval(() => {
                     newDur=aniDur-0.075;
                     enemy.style.animationDuration=newDur+"s";
                 }
-            },1500)
+            },1000)
             
         }
     }
