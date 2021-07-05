@@ -20,6 +20,10 @@ def todolist():
 def clock():
     return render_template('clock.html')
 
+@app.route('/game')
+def game():
+    return render_template('game.html')
+
 
 if __name__=="__main__":
     app.run(debug=True,port=8000)
